@@ -12,16 +12,19 @@ header, nav, section {  background: #fff;
                        text-align: center;}
 footer { background: #fff;
          text-align: center;} 
-nav span { margin: 0 10px 0 0;}                               
+nav span { margin: 0 10px 0 0;} 
+#logo { float: left; max-width: 40%;}
+#logo img { width: 100%;}
+#creditos { float: right; max-width: 60%;}                              
 @media only screen
 and (max-width:480px){
 
-
-
 header span, section h3 { display: none;}
 body { font-size: xx-large; background: #333; }
-#page-wrap:after { content: "vision smartphone";}                       
-
+#page-wrap:after { content: "vision smartphone";} 
+section { height: 250px;}
+#logo { width: 20%; max-width: 120px; float: right; display: inline-block;}
+#creditos { width: 75%; float: left; display: inline-block;}
 }
 @media only screen
 and (min-width:530px){
@@ -29,13 +32,13 @@ and (min-width:530px){
 #page-wrap:after { content: "version pantalla grande";}
 nav { float: left;
       width: 15%;
-      height: 200px;}
+      height: 350px;}
 nav span { margin: 0 100px 0 0;}
 section { float: right;
            width: 80%;
-           height: 200px;}
-footer { clear: both;
-	     
+           height: 350px;}
+footer { clear: both;     
          display: block;}
-         body { background: #999;}  
+         body { background: #999;}
+
 }
