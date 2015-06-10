@@ -25,6 +25,7 @@ body { font-size: xx-large; background: #333; }
 section { height: 250px;}
 #logo { width: 20%; max-width: 120px; float: right; display: inline-block;}
 #creditos { width: 75%; float: left; display: inline-block;}
+
 }
 @media only screen
 and (min-width:530px){
