@@ -15,7 +15,8 @@ footer { background: #fff;
 nav span { margin: 0 10px 0 0;} 
 #logo { float: left; max-width: 40%;}
 #logo img { width: 100%;}
-#creditos { float: right; max-width: 60%;}                              
+#creditos { float: right; max-width: 60%;}
+#error { color: #f00; font-size: smaler;}                              
 @media only screen
 and (max-width:480px){
 
