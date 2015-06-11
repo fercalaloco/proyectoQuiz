@@ -45,7 +45,7 @@ exports.create = function(req, res){
     }else{
     	quiz.save({fields: ["pregunta", "respuesta"]})
     	.then( function(){res.redirect('/quizes')})
-    }});
+    }}).catch(function(error){next(error)});
 };
 
 exports.edit = function(req, res){
@@ -63,5 +63,11 @@ exports.update = function(req, res){
 			req.quiz.save({fields: ["pregunta", "respuesta"]})
 			.then(function(){res.redirect('/quizes');});
 		}
-	});
+	}).catch(function(error){next(error)});
+};
+
+exports.destroy = function(req, res){
+	req.quiz.destroy().then(function(){
+		res.redirect('/quizes');
+	}).catch(function(error){next(error)});
 };
