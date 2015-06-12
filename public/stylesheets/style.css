@@ -16,7 +16,16 @@ nav span { margin: 0 10px 0 0;}
 #logo { float: left; max-width: 40%;}
 #logo img { width: 100%;}
 #creditos { float: right; max-width: 60%;}
-#ErrorMsgs { color: #f00; font-size: smaler;}                              
+#ErrorMsgs { color: #f00; font-size: smaler;}
+input[type="search"] { width: 20px; background: #666;} 
+#buscador {background: #FF9 url('../images/lupa16.png') no-repeat 5px center;
+           border-radius: 10px; 
+           height: 25px; 
+           border: 2px ridge;
+           padding-left: 26px; }
+a { color: #23f;}
+a:hover { color: red;} 
+.ocultar { display: none;}                            
 @media only screen
 and (max-width:480px){
 
