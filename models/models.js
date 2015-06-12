@@ -24,7 +24,7 @@ var Quiz = sequelize.import(quiz_path);
 var comment_path = path.join(__dirname, 'comment');
 var Comment = sequelize.import(comment_path);
 Comment.belongsTo(Quiz);
-Quiz.hasMamy(Comment);
+Quiz.hasMany(Comment);
 exports.Quiz = Quiz;
 exports.Comment = Comment;
 
