@@ -1,23 +1,51 @@
 var models = require('../models/models.js');
 
 exports.load = function(req, res, next, quizId){
-		models.Quiz.find({
-			where: {id: Number(quizId)},
-			include: [{model: models.Comment}]
-		})then(function(quiz){
-
+	models.Quiz.find(quizId).then(function(quiz){
 		if(quiz){
-			req.quiz = quiz;
-			next();
-		}else{
-			next(new Error('no existe quizId:'+ quizId))
-		}
-	}).catch(function(error){next(error)});
+		req.quiz = quiz;
+		next();
+	      }else{next(new Error('no existe id- '+quizId))}
+	    }
+	).catch(function(error){next(error)});
 };
+		//models.Quiz.find(quizId).then(function(quiz){})
+		//models.Quiz.find({
+           // models.Quiz.find({
+            	//where: {id: Number(quizId)},
+            	//include: [{model: models.Comment}]
+		
+			
+			
+		//}).then(function(quiz){
+
+		//if(quiz){
+			//req.quiz = quiz;
+			//next();
+		//}else{
+			//next(new Error('no existe quizId:'+ quizId))
+		//}
+		
+	//}).catch(function(error){next(error)});
+//};
 
 exports.index = function(req, res){
-	models.Quiz.findAll().then(function(quizes){
-		res.render('quizes/index.ejs', { quizes: quizes, errors: []});
+	var search =req.query && req.query.search ? req.query.search: '';
+	var busca = { where: { pregunta:{
+		     like: '%'+(search.length>0 ? search.replace(/\ /g, "%")+'%' : '')
+	        }},
+	        order: [['pregunta', 'ASC']]
+
+	};
+	if(search.length>0){
+		search = 'relacionado con su busqueda: "'+search+'"';
+		          }
+		models.Quiz.findAll(busca).then(function(quizes){
+			res.render('quizes/index.ejs', {quizes: quizes,
+			                                search: search,
+			                                errors: []
+			                             });
+	
 	}).catch(function(error){next(error)});
 };
 
@@ -42,14 +70,20 @@ exports.new = function(req, res){
 };
 
 exports.create = function(req, res){
-	var quiz = models.Quiz.build(req.body.quiz);
-    quiz.validate().then(function(err){
-    if(err){
-    	res.render('quizes/new', {quiz: quiz, errors: err.errors});
-    }else{
-    	quiz.save({fields: ["pregunta", "respuesta"]})
-    	.then( function(){res.redirect('/quizes')})
-    }}).catch(function(error){next(error)});
+	 var quiz = models.Quiz.build(req.body.quiz);
+	 quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+	 	res.redirect('/quizes');
+	 })
+	/* quiz.validate().then(function(err){
+		if(err){
+			res.render('quizes/new', {quiz: quiz, errors: err.errors});
+		}else{
+			quiz.save({fields: ["pregunta", "respuesta"]})
+			.then(function(){
+				res.redirect('/quizes')
+			})
+		}
+	});*/
 };
 
 exports.edit = function(req, res){
