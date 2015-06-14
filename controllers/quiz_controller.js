@@ -11,25 +11,7 @@ exports.load = function(req, res, next, quizId){
 	    }
 	).catch(function(error){next(error)});
 };
-		//models.Quiz.find(quizId).then(function(quiz){})
-		//models.Quiz.find({
-           // models.Quiz.find({
-            	//where: {id: Number(quizId)},
-            	//include: [{model: models.Comment}]
 		
-			
-			
-		//}).then(function(quiz){
-
-		//if(quiz){
-			//req.quiz = quiz;
-			//next();
-		//}else{
-			//next(new Error('no existe quizId:'+ quizId))
-		//}
-		
-	//}).catch(function(error){next(error)});
-//};
 
 exports.index = function(req, res){
 	var search =req.query && req.query.search ? req.query.search: '';
@@ -73,19 +55,10 @@ exports.new = function(req, res){
 
 exports.create = function(req, res){
 	 var quiz = models.Quiz.build(req.body.quiz);
-	 quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+	 quiz.save({fields: ["pregunta", "respuesta", "categoria"]}).then(function(){
 	 	res.redirect('/quizes');
 	 })
-	/* quiz.validate().then(function(err){
-		if(err){
-			res.render('quizes/new', {quiz: quiz, errors: err.errors});
-		}else{
-			quiz.save({fields: ["pregunta", "respuesta"]})
-			.then(function(){
-				res.redirect('/quizes')
-			})
-		}
-	});*/
+	
 };
 
 exports.edit = function(req, res){
@@ -96,11 +69,12 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.categoria = req.body.quiz.categoria;
 	req.quiz.validate().then(function(err){
 		if(err){
 			res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
 		}else{
-			req.quiz.save({fields: ["pregunta", "respuesta"]})
+			req.quiz.save({fields: ["pregunta", "respuesta", "categoria"]})
 			.then(function(){res.redirect('/quizes');});
 		}
 	}).catch(function(error){next(error)});

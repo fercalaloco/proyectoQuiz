@@ -25,7 +25,7 @@ input[type="search"] { width: 20px; background: #666;}
            padding-left: 26px; }
 a { color: #23f;}
 a:hover { color: red;} 
-.ocultar { display: none;}                            
+.ocultar { display: ;}                            
 @media only screen
 and (max-width:480px){
 

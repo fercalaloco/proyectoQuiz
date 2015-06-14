@@ -39,5 +39,5 @@ sequelize.sync().then(function(){
 		              })
 			.then(function(){console.log('base de datos inicializada')});
 		};
-	});
+});
 });
