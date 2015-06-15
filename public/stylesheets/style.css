@@ -32,7 +32,7 @@ and (max-width:480px){
 header span, section h3 { display: none;}
 body { font-size: xx-large; background: #333; }
 #page-wrap:after { content: "vision smartphone";} 
-section { height: 250px;}
+section {min-height: 250px;}
 #logo { width: 20%; max-width: 120px; float: right; display: inline-block;}
 #creditos { width: 75%; float: left; display: inline-block;}
 
