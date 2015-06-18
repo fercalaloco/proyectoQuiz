@@ -69,7 +69,7 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
-	req.quiz.categoria = req.body.quiz.categorias;
+	req.quiz.categorias = req.body.quiz.categorias;
 	req.quiz.validate().then(function(err){
 		if(err){
 			res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
