@@ -1,7 +1,14 @@
+exports.loginRequired = function(req, res, next){
+	if(req.session.user){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+};
 exports.new = function(req, res){
 	var errors = req.session.errors || {};
 	req.session.errors = {};
-	res.render('session/new', {errors: errors});
+	res.render('sessions/new', {errors: errors});
 };
 exports.create = function(req, res){
 	var login = req.body.login;
