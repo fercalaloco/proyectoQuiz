@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 router.param('quizId', quizController.load);
 router.get('/login', sessionController.new);
 router.post('/login', sessionController.create);
-router.get('/login', sessionController.destroy);
+router.get('/logout', sessionController.destroy);
 router.get('/quizes', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
