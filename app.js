@@ -32,6 +32,22 @@ app.use(function(req, res, next){
     res.locals.session = req.session;
     next();
 });
+
+app.use(function(req, res, next){
+  var limite = 120000;
+  if (req.session.user) { 
+      if (req.session.limite > (new Date()).getTime()) { 
+            req.session.limite = (new Date()).getTime() + limite;
+            next();
+      } else {
+         req.session.destroy();
+         res.redirect('/');
+      }
+  } else {
+       next(); 
+         }
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
