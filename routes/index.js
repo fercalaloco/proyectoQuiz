@@ -24,7 +24,7 @@ router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
 router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',
 	sessionController.loginRequired, commentController.publish);
-
+router.get('/statistics', quizController.statistics);
 router.get('/author', function(req, res) {
   res.render('author', { title: 'creditos' });
 });

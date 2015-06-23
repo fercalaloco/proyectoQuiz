@@ -91,3 +91,22 @@ exports.destroy = function(req, res){
 		res.redirect('/quizes');
 	}).catch(function(error){next(error)});
 };
+exports.statistics = function(req, res, next){
+	models.Quiz.count().then(function(numPreg){
+	models.Comment.count().then(function(numComen){
+      models.Comment.count({COUNT: {DISTINCT:"QuizId"}})
+   // models.Sequelize.query('SELECT COUNT ( DISTINCT  "quizId" ) FROM "Comments"')
+   //y mil cosas mas y no di con la tecla 
+	.then(function(conComen){
+		res.render('quizes/statistics.ejs', {
+			numPreg: numPreg,
+			numComen: numComen,
+			comenxpreg: (numComen/numPreg).toFixed(2),
+			sinComen: (numPreg - conComen),
+			conComen: conComen,
+			errors: []
+		});
+	}).catch(function(error){next(error);});	
+	}).catch(function(error){next(error);});	
+	}).catch(function(error){next(error);});
+};
